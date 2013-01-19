@@ -4,7 +4,7 @@
 
 	if(document.location.hash === '#about')
 		nav.classList.add('flatout');
-	
+	//wsrtrt
 	var handlerClick = function(event){
 
 		nav.classList.toggle('flatout');
