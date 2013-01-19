@@ -3,6 +3,14 @@ module.exports = function( grunt ) {
 
   grunt.initConfig({
 
+  	connect: {
+  		server: {
+  			options: {
+  				keepalive: true
+  			}
+  		}
+  	},
+
   	// Coffee to JS compilation
     coffee: {
       compile: {
