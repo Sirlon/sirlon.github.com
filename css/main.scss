@@ -180,11 +180,6 @@ nav {
 .wrapper:hover,
 .wrapper:focus,
 .touch .wrapper {
-    .page-header {
-        .vcard {
-            @include transform(rotateX(180deg));
-        }
-    }
     .page-menu:not(.flatout) {
         top: -1em;
         .social-fold {
@@ -196,7 +191,7 @@ nav {
     }
 
     .page-section:not(:target){
-        top: -3em;
+        top: -2.75em;
         @include transition(all .3s ease-in-out);
     }
 }
@@ -205,7 +200,7 @@ nav {
     text-align: center;
     position: relative;
     top: -5em;
-    background: #f5f5f5;
+    background: #fefefe;
     width: 23.25em;
     margin-left: .25em;
     padding: .12em;
@@ -214,9 +209,10 @@ nav {
 
     .text-wrapper {
         overflow: hidden;
+        position: relative;
         height: 0;
         background: #fefefe;
-        padding: 0 1em;
+        margin: 0 1em;
         @include opacity(.6);
         @include transition(all .75s ease-in-out);
     }
@@ -230,20 +226,48 @@ nav {
         font-size: 1.25em;
         line-height: 1.8;
         background: #666;
-        bottom:-1.7em;
+        bottom:-1.24em;
         left: 50%;
         margin-left: -.9em;
-        z-index: -1;
         text-decoration: none;
+        border: .0625em solid lighten(#666, 10%);
+        border-top: 0;
         @include border-radius(0 0 .25em .25em);
-        @include box-shadow(0 -.25em .75em rgba(0, 0, 0, .45) inset, 0 0.0625em .12em rgba(0, 0, 0, .15));
+        @include box-shadow(0 -.25em .75em rgba(0, 0, 0, .25) inset, 0 0.0625em .12em rgba(0, 0, 0, .15));
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            @include inline-block;
+            width: 2.6em;
+            height: .24em;
+            background: #fefefe;
+            border-bottom: 1px solid #dcdcdc;
+            top: 0;
+            left: -.4em;
+        }
         &:before {
-            content: '?';
+            @include box-shadow(0 .0625em .0625em rgba(0, 0, 0, .15));
+        }
+        &:after {
+            width: 0;
+            height: 0;
+            background: 0;
+            border: .4em solid transparent;
+            border-top-color: #fff;
+            top: auto;
+            bottom: .2em;
+            left: 50%;
+            margin-left: -.4em;
         }
 
         &:hover,
         &:focus {
-            color: $color-red;
+            bottom: -1.48em;
+            &:before {
+                top: -.24em;
+            }
         }
     }
 
@@ -256,21 +280,46 @@ nav {
     top: -3em;
     @include box-shadow(0 .0625em .25em rgba(0, 0, 0, .25));
     .text-wrapper {
-        padding:1em;
+        margin:1em;
     }
     &#about {
         .text-wrapper {
-        height: 20em;
+        height: 23em;
 
         }
     }
 
     .pulldown-handle {
-        &:before {
-            content: '^';
+        &:after {
+            border-bottom-color: #fff;
+            border-top-color: transparent;
+            bottom: .6em;
         }
     }
     
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    @include inline-block;
+    @include transition(all .3s ease-in-out);
+    @include transform(rotateY(-60deg) translateZ(-5px));
+    @include opacity(0);
+    img {
+        width: 100%;
+    }
+    &.current {
+        @include transform(rotateY(0) translateZ(0));
+        @include opacity(1);
+    }
+    &.last {
+        @include transform(rotateY(60deg) translateZ(-5px));
+        @include opacity(1);
+    }
 }
 
 .page-footer {
