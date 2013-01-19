@@ -1,0 +1,334 @@
+@import "compass/css3";
+
+@mixin background-gradient($from, $to){
+    background: $from; /* Old browsers */
+    background: -moz-linear-gradient(top, $from 0%, $to 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
+    background: -webkit-linear-gradient(top, $from 0%,$to 100%);
+    background: -o-linear-gradient(top, $from 0%,$to 100%);
+    background: -ms-linear-gradient(top, $from 0%,$to 100%);
+    background: linear-gradient(to bottom, $from 0%,$to 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=0 );
+}
+    
+$text-color: #333;
+$text-header: #fff;
+
+$color-blue: #2caae1;
+$color-red: #dd4b39;
+$color-green: #a3e028;
+
+* { @include box-sizing(border-box); }
+
+body {
+    font: 16px/1.2 Ubuntu, Arial, sans-serif;
+    font-weight: 300;
+    background: #f5f5f5;
+    padding: 6em 0 2em;
+}
+
+img {
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: Lato, Arial, sans-serif;
+    font-weight: 900;
+}
+
+strong {
+    font-weight: 500;
+}
+
+nav {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+::-moz-selection {
+    background: $color-blue;
+    color: #fff;
+    text-shadow: none;
+}
+
+::selection {
+    background: $color-blue;
+    color: #fff;
+    text-shadow: none;
+}
+
+.wrapper {
+    width: 23.75em;
+    position: relative;
+    margin: 0 auto;
+    @include perspective(500);
+}
+
+.page-header {
+    position: relative;
+    z-index: 10;
+    color: $text-header;
+    @include transition(all .3s ease-in-out);
+    @include background-gradient($color-red, darken($color-red, 8%));
+    @include box-shadow(0 .0625em .25em rgba(0, 0, 0, .25));
+    font-family: Lato, Arial, sans-serif;
+    @include perspective(500);
+    .avatar {
+        @include inline-block;
+        height: 4em;
+        border-right: rgba(250,250,250, .35);
+    }
+    .vcard {
+        @include inline-block;
+        color: $text-header;
+        margin-left: 1em;
+        text-decoration: none;
+        .name {
+            display: block;
+            line-height: 1.06;
+            font-weight: 900;
+            font-size: 2em;
+        }
+        .profession {
+            font-weight: 300;
+        }
+    }
+}
+
+.sprite-bg {
+    background-repeat: no-repeat;
+    background-image: url(../images/sprites.svg);
+    @include background-size(3.25rem, 6.25rem);
+}
+
+.page-menu {
+    position: relative;
+    top: -2em;
+    font-family: Lato, Arial, sans-serif;
+    font-size: 1.25em;
+    @include transition(all .3s ease-in-out);
+    ul{
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        color: $text-header;
+        display: block;
+        height: 100%;
+        text-decoration: none;
+    }
+
+    &.flatout {
+        top: .25em;
+
+        .social-fold {
+            @include transform(translateX(-1em));
+            &.twitter {
+                @include transform(translateX(1em));
+            }
+
+            &:hover,
+            &:focus {
+                @include transform(translateX(-1.5em));
+                &.twitter {
+                    @include transform(translateX(1.5em));
+                }
+            }
+        }
+    }
+}
+.social-fold {
+    @include inline-block;
+    position: relative;
+    width: 50%;
+    height: 2em;
+    line-height: 2em;
+    float: left;
+    margin: 0;
+    @include box-shadow(0, 0.0625em, 0px, rgba(250, 250, 250, .5));
+    @include transform-origin(100%, 50%);
+    @include transform(translateZ(0));
+    background-color: $color-red;
+    text-align: center;
+    background-position: -.1em .3em;
+
+    @include transition(all .3s ease-in-out);
+
+    &.twitter {
+        background-color: $color-blue;
+        background-position: right -2.15em;
+        @include transform-origin(0, 50%);
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $text-color;
+    }
+}
+
+.wrapper:hover,
+.wrapper:focus,
+.touch .wrapper {
+    .page-header {
+        .vcard {
+            @include transform(rotateX(180deg));
+        }
+    }
+    .page-menu:not(.flatout) {
+        top: -1em;
+        .social-fold {
+            @include transform(rotate(-6deg) translateX(.2em));
+            &.twitter {
+                @include transform(rotate(6deg) translateX(-.2em));
+            }
+        }
+    }
+
+    .page-section:not(:target){
+        top: -3em;
+        @include transition(all .3s ease-in-out);
+    }
+}
+
+.page-section{
+    text-align: center;
+    position: relative;
+    top: -5em;
+    background: #f5f5f5;
+    width: 23.25em;
+    margin-left: .25em;
+    padding: .12em;
+    z-index: 2;
+    @include transition(all .8s ease-in-out);
+
+    .text-wrapper {
+        overflow: hidden;
+        height: 0;
+        background: #fefefe;
+        padding: 0 1em;
+        @include opacity(.6);
+        @include transition(all .75s ease-in-out);
+    }
+
+    .pulldown-handle {
+        position: absolute;
+        color: $text-header;
+        @include inline-block;
+        width: 1.8em;
+        height: 1.7em;
+        font-size: 1.25em;
+        line-height: 1.8;
+        background: #666;
+        bottom:-1.7em;
+        left: 50%;
+        margin-left: -.9em;
+        z-index: -1;
+        text-decoration: none;
+        @include border-radius(0 0 .25em .25em);
+        @include box-shadow(0 -.25em .75em rgba(0, 0, 0, .45) inset, 0 0.0625em .12em rgba(0, 0, 0, .15));
+        &:before {
+            content: '?';
+        }
+
+        &:hover,
+        &:focus {
+            color: $color-red;
+        }
+    }
+
+    h1  {
+        margin-top: 0;
+    }
+}
+
+.page-section:target {
+    top: -3em;
+    @include box-shadow(0 .0625em .25em rgba(0, 0, 0, .25));
+    .text-wrapper {
+        padding:1em;
+    }
+    &#about {
+        .text-wrapper {
+        height: 20em;
+
+        }
+    }
+
+    .pulldown-handle {
+        &:before {
+            content: '^';
+        }
+    }
+    
+}
+
+.page-footer {
+    font-size: .75em;
+    color: #ababab;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: right;
+    padding:.25em;
+}
+
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
