@@ -68,7 +68,8 @@ nav {
 }
 
 .wrapper {
-    width: 23.75em;
+    min-width: 280px;
+    max-width: 23.75em;
     position: relative;
     margin: 0 auto;
     @include perspective(500);
