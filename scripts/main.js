@@ -1,4 +1,14 @@
 (function(window, document){
+
+	var bind = function(element, event, func) {
+
+		if (element.addEventListener) {
+			element.addEventListener(event, func, false); 
+		} else if (element.attachevent) {
+			element.attachEvent('on'+event, func);
+		}
+	}
+
 	var nav = document.getElementsByTagName('nav')[0],
 		pullHandle = document.querySelector('.pulldown-handle');
 
@@ -15,11 +25,7 @@
 		}
 	};
 
-	if(pullHandle.addEventListener) {
-		pullHandle.addEventListener('click', handlerClick, false);
-	} else {
-		pullHandle.attachEvent('onclick', handlerClick);
-	}
+	bind(pullHandle,'click', handlerClick);
 
 	var slides = document.querySelectorAll('.slide'),
 		aboutSection = document.querySelector('#about .text-wrapper'),
@@ -48,9 +54,19 @@
 	};
 	showSlide(0);
 
-	aboutSection.addEventListener('click', function(event){
+	bind(aboutSection, 'click', function(event){
 		currentSlide = currentSlide < slides.length-1  ? (currentSlide+1) : 0;
 		showSlide(currentSlide);
-	}, false);
+	});
+
+	var header = document.querySelector('.page-header'),
+		avatar = document.querySelector('.avatar');
+
+	bind(header,'mouseover',function(event){
+		avatar.classList.add('tada');
+	});
+	bind(header,'mouseout',function(event){
+		avatar.classList.remove('tada');
+	});
 
 })(window, document);

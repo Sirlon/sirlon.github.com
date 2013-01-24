@@ -10,7 +10,58 @@
     background: linear-gradient(to bottom, $from 0%,$to 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=0 );
 }
-    
+
+.animated {
+    -webkit-animation-duration: 1s;
+       -moz-animation-duration: 1s;
+         -o-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
+}
+
+
+@-webkit-keyframes tada {
+    0% {-webkit-transform: scale(1); -webkit-box-shadow:0, 0, 0, rgba(0, 0, 0, 0);}   
+    10%, 20% {-webkit-transform: scale(0.9) rotate(-3deg); -webkit-box-shadow: -.12em, 0, .24em, rgba(0, 0, 0, .35);}
+    30%, 50%, 70%, 90% {-webkit-transform: scale(1.1) rotate(3deg); -webkit-box-shadow: .12em, 0, .44em, rgba(0, 0, 0, .65);}
+    40%, 60%, 80% {-webkit-transform: scale(1.1) rotate(-3deg); -webkit-box-shadow: -.12em, 0, .44em, rgba(0, 0, 0, .65);}
+    100% {-webkit-transform: scale(1) rotate(0); -webkit-box-shadow:0, 0, 0, rgba(0, 0, 0, 0);}
+}
+
+@-moz-keyframes tada {
+    0% {-moz-transform: scale(1);}  
+    10%, 20% {-moz-transform: scale(0.9) rotate(-3deg);}
+    30%, 50%, 70%, 90% {-moz-transform: scale(1.1) rotate(3deg);}
+    40%, 60%, 80% {-moz-transform: scale(1.1) rotate(-3deg);}
+    100% {-moz-transform: scale(1) rotate(0);}
+}
+
+@-o-keyframes tada {
+    0% {-o-transform: scale(1);}    
+    10%, 20% {-o-transform: scale(0.9) rotate(-3deg);}
+    30%, 50%, 70%, 90% {-o-transform: scale(1.1) rotate(3deg);}
+    40%, 60%, 80% {-o-transform: scale(1.1) rotate(-3deg);}
+    100% {-o-transform: scale(1) rotate(0);}
+}
+
+@keyframes tada {
+    0% {transform: scale(1);}   
+    10%, 20% {transform: scale(0.9) rotate(-3deg);}
+    30%, 50%, 70%, 90% {transform: scale(1.1) rotate(3deg);}
+    40%, 60%, 80% {transform: scale(1.1) rotate(-3deg);}
+    100% {transform: scale(1) rotate(0);}
+}
+
+.tada {
+    -webkit-animation-name: tada;
+    -moz-animation-name: tada;
+    -o-animation-name: tada;
+    animation-name: tada;
+}
+
 $text-color: #333;
 $text-header: #fff;
 
@@ -25,6 +76,7 @@ body {
     font-weight: 300;
     background: #f5f5f5;
     padding: 6em 0 2em;
+    -webkit-backface-visibility: hidden;
 }
 
 img {
