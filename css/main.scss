@@ -1,3 +1,4 @@
+@import "normalize.css";
 @import "compass/css3";
 
 @mixin background-gradient($from, $to){
@@ -72,10 +73,10 @@ $color-green: #a3e028;
 * { @include box-sizing(border-box); }
 
 body {
-    font: 16px/1.2 Ubuntu, Arial, sans-serif;
+    font: 14px/1.2 Ubuntu, Arial, sans-serif;
     font-weight: 300;
     background: #f5f5f5;
-    padding: 6em 0 2em;
+    padding: 6em .5em 2em;
     -webkit-backface-visibility: hidden;
 }
 
@@ -385,7 +386,12 @@ nav {
     padding:.25em;
 }
 
-
+@media only screen and (min-width: 35em) {
+    body {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+}
 .hidden {
     display: none !important;
     visibility: hidden;
