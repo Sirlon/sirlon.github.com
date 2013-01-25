@@ -5,6 +5,7 @@
 Icon^M^M
 
 
+
 # Thumbnails
 ._*
 
@@ -14,4 +15,3 @@ Icon^M^M
 
 .sass-cache/
 node_modules/
-Icon
