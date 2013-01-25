@@ -31,8 +31,12 @@
 		
 		if(document.location.hash === '#about') {
 			document.location.hash = '';
-
+			if(_gaq)
+				_gaq.push(['_trackEvent', 'HandleClick', 'Close']);
 			event.preventDefault();
+		} else {
+			if(_gaq)
+				_gaq.push(['_trackEvent', 'HandleClick', 'Open']);
 		}
 	};
 
@@ -67,6 +71,8 @@
 	bind(aboutSection, 'click', function(event){
 		currentSlide = currentSlide < slides.length-1  ? (currentSlide+1) : 0;
 		showSlide(currentSlide);
+		if(_gaq && currentSlide === 1)
+			_gaq.push(['_trackEvent', 'AboutClick', 'NextSlide', 'Gotcha']);
 	});
 
 	var header = document.querySelector('.page-header'),
