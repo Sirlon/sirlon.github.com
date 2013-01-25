@@ -12,6 +12,11 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=0 );
 }
 
+/** 
+    credits for the css animation below goes to Daniel Eden - animate.css
+    http://daneden.me/animate/
+**/
+
 .animated {
     -webkit-animation-duration: 1s;
        -moz-animation-duration: 1s;
