@@ -78,10 +78,10 @@ $color-green: #a3e028;
 * { @include box-sizing(border-box); }
 
 body {
-    font: 14px/1.2 Ubuntu, Arial, sans-serif;
+    font: 12px/1.2 Ubuntu, Arial, sans-serif;
     font-weight: 300;
     background: #f5f5f5;
-    padding: 6em .5em 2em;
+    padding: 6em .24em 2em;
     -webkit-backface-visibility: hidden;
 }
 
@@ -126,7 +126,7 @@ nav {
 }
 
 .wrapper {
-    min-width: 280px;
+    min-width: 18em;
     max-width: 23.75em;
     position: relative;
     margin: 0 auto;
@@ -141,6 +141,7 @@ nav {
     @include background-gradient($color-red, darken($color-red, 8%));
     @include box-shadow(0 .0625em .25em rgba(0, 0, 0, .25));
     font-family: Lato, Arial, sans-serif;
+    white-space: nowrap;
     @include perspective(500);
     .avatar {
         @include inline-block;
@@ -220,13 +221,13 @@ nav {
     @include transform(translateZ(0));
     background-color: $color-red;
     text-align: center;
-    background-position: -.1em .3em;
+    background-position: -.2rem .5rem;
 
     @include transition(all .3s ease-in-out);
 
     &.twitter {
         background-color: $color-blue;
-        background-position: right -2.15em;
+        background-position: right -2.55rem;
         @include transform-origin(0, 50%);
     }
 
@@ -260,8 +261,7 @@ nav {
     position: relative;
     top: -5em;
     background: #fefefe;
-    width: 23.25em;
-    margin-left: .25em;
+    margin: 0 .25em;
     padding: .12em;
     z-index: 2;
     @include transition(all .8s ease-in-out);
@@ -384,17 +384,20 @@ nav {
 .page-footer {
     font-size: .75em;
     color: #ababab;
-    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: right;
+    margin-top: 1.5em;
     padding:.25em;
 }
 
-@media only screen and (min-width: 300px) {
+@media only screen and (min-width: 340px) {
     body {
         font-size: 16px;
         line-height: 1.2;
+    }
+    .page-footer { 
+        position: fixed;
     }
 }
 .hidden {
