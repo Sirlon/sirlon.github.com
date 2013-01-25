@@ -1,4 +1,11 @@
+'use strict';
 (function(window, document){
+	var ismobile = function(){
+		return navigator.userAgent.match(/Android|BlackBerry|Opera Mini|Opera Mobile|IEMobile|iPhone|iPad|iPod/i);
+	}
+	if(ismobile()) {
+		var html = document.getElementsByTagName('html')[0].className += ' mobile';
+	}
 
 	var bind = function(element, event, func) {
 
@@ -13,11 +20,15 @@
 		pullHandle = document.querySelector('.pulldown-handle');
 
 	if(document.location.hash === '#about')
-		nav.classList.add('flatout');
+		nav.className += 'flatout';
 
 	var handlerClick = function(event){
-
-		nav.classList.toggle('flatout');
+		if(nav.classList) {
+			nav.classList.toggle('flatout');
+		} else {
+			nav.className = nav.className.match(/flatout/i) ? nav.className.replace('flatout', '') : nav.className+' flatout';
+		}
+		
 		if(document.location.hash === '#about') {
 			document.location.hash = '';
 
@@ -36,18 +47,17 @@
 
 		for (var i = oldCurrents.length - 1; i >= 0; i--) {
 				var _slide = oldCurrents[i];
-				_slide.classList.remove('current');
-				_slide.classList.add('last');
+				_slide.className = _slide.className.replace(/\s?current/, '')+' last';
 				setTimeout(function(){
 					_slide.style.display = 'none';
-					_slide.classList.remove('last');
+					_slide.className = _slide.className.replace(/\s?last/, '');
 				}, 300);
 		};
 
 		var slide = slides[index];
 			slide.style.display = '';
 			setTimeout(function(){
-				slide.classList.add('current');
+				slide.className += ' current';
 			}, 10);
 			
 		
@@ -63,10 +73,12 @@
 		avatar = document.querySelector('.avatar');
 
 	bind(header,'mouseover',function(event){
-		avatar.classList.add('tada');
+		if(avatar.classList)
+			avatar.classList.add('tada');
 	});
 	bind(header,'mouseout',function(event){
-		avatar.classList.remove('tada');
+		if(avatar.classList)
+			avatar.classList.remove('tada');
 	});
 
 })(window, document);

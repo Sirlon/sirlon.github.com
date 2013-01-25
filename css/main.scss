@@ -239,7 +239,8 @@ nav {
 
 .wrapper:hover,
 .wrapper:focus,
-.touch .wrapper {
+.touch .wrapper,
+.mobile .wrapper {
     .page-menu:not(.flatout) {
         top: -1em;
         .social-fold {
