@@ -57,28 +57,27 @@ module.exports = function( grunt ) {
         tasks: 'coffee'
       },
       uglify: {
-        files: ['scripts/main.js'],
+        files: 'scripts/main.js',
         tasks: 'uglify'
       },
       compass: {
         files: 'css/**/*.{scss,sass}',
         tasks: 'compass'
-      },
-      reload: {
-        files: [
-          '*.html',
-          'css/**/*.css',
-          'scripts/**/*.{js,!(min.js)}',
-          'images/**/*'
-        ],
-        tasks: 'reload'
-      }
+      }//,
+      //reload: {
+       // files: [
+        //  '*.html',
+         // 'css/**/*.css',
+        //  'scripts/**/*.{js,!(min.js)}',
+         // 'images/**/*'
+        //],
+        //tasks: 'reload'
+      //}
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-reload');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
